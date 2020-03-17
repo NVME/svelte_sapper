@@ -26,7 +26,7 @@ function initiStore(){
     return [
         {
            id:1,
-            content:"This is my first todo item cccfdffffffffffffff  ",
+            content:"This is my first todo item :)",
             isCompleted:false
         },
         {
