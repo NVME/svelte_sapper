@@ -1,6 +1,7 @@
 <script> 
    import AddTodo from './Add.svelte';
-   import List from './List.svelte'
+   import List from './List.svelte';
+   import Summary from './Summary.svelte'
    let name ="ewan";
 </script>
 <div class="flex justify-center ">     
@@ -10,5 +11,6 @@
    </center>
    <AddTodo/>
    <List/>
+   <Summary/>
    </div>
 </div>
