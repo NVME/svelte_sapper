@@ -1,10 +1,15 @@
 <script >
 import {store} from './store.js'
- let todos=[];
-store.subscribe(items=>todos=items);
-
+ let todo=0;
+ let total=0;
+ let completed=0;
+store.subscribe(state=>{
+     todo=state.todo;
+     total=state.total;
+     completed=state.completed;
+});
 </script>
 
-<div class="py-2">
- Total:{todos.length} | Completed: { todos.filter(t=>t.isCompleted).length} | Todo: {todos.filter(t=>!t.isCompleted).length}
+<div class="py-2 text-gray-700">
+ Total:{total} | Completed: { completed} | Todo: {todo}
 </div>

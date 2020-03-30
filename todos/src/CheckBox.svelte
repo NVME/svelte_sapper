@@ -5,8 +5,12 @@ import {createEventDispatcher} from 'svelte'
    export let text=''
    const dispatch= createEventDispatcher();
    function updateTodo(){
+     checked=!checked;
      dispatch('update',
-        id
+        {
+          id,
+          completed:checked
+        }
      )
    }
 </script>

@@ -3,10 +3,10 @@
 import CheckBox from './CheckBox.svelte'
 import {store} from './store.js'
 let items=[];
-store.subscribe( value=> items=value);
+store.subscribe( state=> items=state.items);
 function updateTodo(event){
-   const id=event.detail;
-   store.updateTodo(id);
+   const {id, completed} =event.detail;   
+   store.updateTodo(id,completed);
 }
 </script>
 <div class="mt-5">

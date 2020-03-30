@@ -6,16 +6,31 @@ function createStore(){
     return {
         subscribe,
         addTodo:(todo)=>{          
-            update(items=>[...items,{
-                id:items.length+1,
-                content:todo,
-                isCompleted:false
-            }]);
+            update(state=>{
+             return  { ...state,
+                items:  [
+                          ...state.items,
+                             {
+                            id:state.items.length+1,
+                            content:todo,
+                            isCompleted:false
+                            }                            
+                       ],
+                total:state.total+1,
+                todo:state.todo+1
+             }
+            }
+          );
         },
-        updateTodo:(id)=>{
-            update(items=>items.map(item=>
-                   item.id===id? {...item,isCompleted:!item.isCompleted}:item
-                )                          
+        updateTodo:(id, isCompleted)=>{
+            update(state=>{
+                return {
+                ...state,
+                   items:state.items.map(item=>item.id===id? {...item,isCompleted:!item.isCompleted}:item) ,
+                   todo: isCompleted?state.todo-1:state.todo+1,
+                   completed:isCompleted?state.completed+1:state.completed-1
+                }
+            }                         
          );
         }
     }
@@ -23,7 +38,8 @@ function createStore(){
 }
 
 function initiStore(){
-    return [
+    return  {
+        items: [
         {
            id:1,
             content:"This is my first todo item :)",
@@ -34,7 +50,11 @@ function initiStore(){
             content:"This is my second todo item",
             isCompleted:true
         }
-    ]
+    ],
+    total:2,
+    completed:1,
+    todo:1
+  }
 }
 
 export const store=createStore()
